@@ -2,7 +2,7 @@
 import sys 
 sys.path.append("..\src")
 
-from math_demo import add, add_with_bug
+from math_demo import add, add_with_bug,tax_calculator_bugged,tax_calculator
 
 
 def test_addition():
@@ -23,7 +23,7 @@ def test_addition_duplicate():
 
 def test_addition_overkill():
     for i in range(0,2**32):
-        for j in range(0,2,**32):
+        for j in range(0,2**32):
             assert add(i,j) == i+j
             assert add(-i,j) == -i+j
             assert add(-i,-j) == -i-j
@@ -44,6 +44,22 @@ def test_addiction_commutative():
     assert add(5,9) ==  14
     print('Test COMMUTATIVE PASSED')
 
+
+def test_tax_calculator():
+    assert tax_calculator(1000) == 150
+    assert tax_calculator(100) == 15
+    assert tax_calculator(10) == 1.5 
+    assert tax_calculator(1) == 0.15
+    print("Test  UNBUGGED TAX CALCULATOR PASSED")
+    assert tax_calculator(2.34) == 0.35
+
+def test_tax_calculator_pesticide():
+    assert tax_calculator_bugged(1000) == 150
+    assert tax_calculator_bugged(100) == 15
+    assert tax_calculator_bugged(10) == 1.5 
+    assert tax_calculator_bugged(1) == 0.15
+    print("Test TAX CALCULATOR PASSED")
+
 if __name__ == "__main__":
     test_addition()
     test_addition_with_bug()
@@ -51,3 +67,4 @@ if __name__ == "__main__":
     test_addition_overkill()
     test_addition_clusters()
     test_addiction_commutative()
+    test_tax_calculator()
