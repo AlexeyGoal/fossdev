@@ -39,9 +39,15 @@ def test_addition_clusters():
     assert add(0,-2) == -2
     print("Test CLUSTERS PASSED")
 
+def test_addiction_commutative():
+    assert add(9,5) == 14
+    assert add(5,9) ==  14
+    print('Test COMMUTATIVE PASSED')
 
 if __name__ == "__main__":
     test_addition()
     test_addition_with_bug()
     test_addition_duplicate()
-    test_addition_overkill
+    test_addition_overkill()
+    test_addition_clusters()
+    test_addiction_commutative()
