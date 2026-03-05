@@ -21,13 +21,6 @@ def test_addition_duplicate():
     assert add(6,7) == 6+7
     print("Test DUPLICATE ADDITION PASSED")
 
-def test_addition_overkill():
-    for i in range(0,2**32):
-        for j in range(0,2**32):
-            assert add(i,j) == i+j
-            assert add(-i,j) == -i+j
-            assert add(-i,-j) == -i-j
-            assert add(i,-j) == i-j
 
 def test_addition_clusters():
     assert add(7,6) == 13
@@ -60,11 +53,20 @@ def test_tax_calculator_pesticide():
     assert tax_calculator_bugged(1) == 0.15
     print("Test TAX CALCULATOR PASSED")
 
+
+def test_negative_income():
+    try:
+        tax_calculator(-100)
+        print("Test NEGATIVE INCOME FAILED")
+    except ValueError as e:
+        print("Test NEGATIVE INCOME PASSED")
+
 if __name__ == "__main__":
     test_addition()
     test_addition_with_bug()
     test_addition_duplicate()
-    test_addition_overkill()
     test_addition_clusters()
     test_addiction_commutative()
     test_tax_calculator()
+    test_tax_calculator_pesticide()
+    test_negative_income()
