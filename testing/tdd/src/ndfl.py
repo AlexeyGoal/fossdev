@@ -1,4 +1,4 @@
-def calculate_ndfl(income):
+def calculate_ndfl(income,inviroment=False, has_children = False):
 
     result = 0
 
