@@ -11,4 +11,4 @@
 ### Установка с TestPyPI
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ simple-calc-alexei
+pip install --index-url https://test.pypi.org/simple/ simple-calc-alexei3838
