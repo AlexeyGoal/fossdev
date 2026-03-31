@@ -4,13 +4,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="simple-calc-kirill",
+    name="simple-calc-alexei38",
     version="0.1.0",
-    author="Kirill",
+    author="alexei",
     description="Простой калькулятор с базовыми операциями",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/simple-calc",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     classifiers=[
