@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="simple-calc-alexei38",
+    name="simple-calc-alexei3838",
     version="0.1.0",
     author="alexei",
     description="Простой калькулятор с базовыми операциями",
