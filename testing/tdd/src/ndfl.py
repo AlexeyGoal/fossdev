@@ -1,20 +1,20 @@
-def calculate_ndfl(income,inviroment=False, has_children = False):
-
+def calculate_ndfl(
+        income, 
+        investment=False, 
+        has_children=False 
+):
     result = 0
-
+    # start addition taxrate
     tiers = [
-        (0,0,0.13),
-        (2_400_000, 312_000,0.15),
-        (5_000_000, 702_000,0.18),
-        (20_000_000, 3_402_000,0.20),
-        (50_000_000, 9_402_000,0.22)
+        (0, 0, 0.13),
 
+        (2_400_000, 312_000, 0.15),
+        (5_000_000, 702_000, 0.18),
+        (20_000_000, 3_402_000, 0.20),
+        (50_000_000, 9_402_000, 0.22),
     ]
-
     for start, addition, taxrate in tiers[::-1]:
         if income > start:
             return (income - start) * taxrate + addition
-    raise RuntimeError("Error in tax calculation")
-          
-    
+    raise RuntimeError(f"Error in tax calculation {income}")
     
