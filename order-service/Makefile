@@ -1,21 +1,28 @@
-.DEFAULT_GOAL := help 
-
+.DEFAULT_GOAL := help
+PRODUCT_SERVICE_URL ?= http://127.0.0.1:8001
+PRODUCT_SERVICE_PORT ?= 8001
+ORDER_SERVICE_PORT ?= 8002
 
 create-practice:
-ifdef PRACTICE
-    ${error must pass val via PRACTICE}
+ifndef PRACTICE
+	$(error must pass val via PRACTICE)
 endif
-    @echo "creating practice"
-    mkdir -p ${PRACTICE}
-	cp PracticeMakefile ${PRACTICE}/Makefile
+	@echo "Creating practice"
+	mkdir -p $(PRACTICE)
+	cp PracticeMakefile $(PRACTICE)/Makefile
 
 remove-practice:
-ifdef PRACTICE
-	${error}
-endif 
-    rm -rf ${PRACTICE}
+ifndef PRACTICE
+	$(error must pass val via PRACTICE)
+endif
+	rm -rf $(PRACTICE)
+	@echo "Practice removed"
 
 help:
-    @echo "This makefile for repo-level activity"
+	@echo "This makefile for repo-level activity"
 
+run-product:
+	cd product_service && poetry run uvicorn src.app.main:app --host 127.0.0.1 --port $(PRODUCT_SERVICE_PORT)
 
+run-order:
+	powershell -Command "cd order_service; $$env:PRODUCT_SERVICE_URL='$(PRODUCT_SERVICE_URL)'; poetry run uvicorn src.app.main:app --host 127.0.0.1 --port $(ORDER_SERVICE_PORT)"
