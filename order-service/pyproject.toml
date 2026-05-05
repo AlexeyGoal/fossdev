@@ -3,7 +3,7 @@ name = "order-service"
 version = "0.0.1"
 description = "App"
 authors = [
-    {name = "sensei38",email = "shihowdima1337@gmail.com"}
+    {name = "alexey",email = "sotnikovalexei844@gmail.com"}
 ]
 license = "MIT"
 readme = "README.md"
