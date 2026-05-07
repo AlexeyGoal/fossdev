@@ -27,11 +27,7 @@ class DiscountResponse(BaseModel):
 
 def calculate_discount(product_id: str, quantity: int, unit_price: float, promo_code: Optional[str]) -> tuple[
     float, str]:
-    if promo_code and promo_code.upper() == "STUDENT10":
-        return 10.0, "Promo code STUDENT10 applied"
-
-    if promo_code and promo_code.upper() == "PROMO20":
-        return 20.0, "Promo code PROMO20 applied"
+    
 
     if quantity >= 10:
         return 15.0, "Wholesale discount for ordering 10+ items"
