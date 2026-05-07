@@ -1,7 +1,7 @@
 [project]
-name = "order-service"
+name = "discount-service"
 version = "0.0.1"
-description = "App"
+description = "discount service"
 authors = [
     {name = "alexey",email = "sotnikovalexei844@gmail.com"}
 ]
