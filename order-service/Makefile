@@ -1,28 +1,28 @@
-.DEFAULT_GOAL := help
-PRODUCT_SERVICE_URL ?= http://127.0.0.1:8001
-PRODUCT_SERVICE_PORT ?= 8001
-ORDER_SERVICE_PORT ?= 8002
+.PHONY: create-structure install-dep install test-pytest
 
-create-practice:
-ifndef PRACTICE
-	$(error must pass val via PRACTICE)
-endif
-	@echo "Creating practice"
-	mkdir -p $(PRACTICE)
-	cp PracticeMakefile $(PRACTICE)/Makefile
+create-structure:
+	mkdir -p src tests docs
+	touch src/.gitkeep tests/.gitkeep
+	touch docs/DOMAIN.md README.md .gitignore 
+	touch setup.py requirements.txt
 
-remove-practice:
-ifndef PRACTICE
-	$(error must pass val via PRACTICE)
-endif
-	rm -rf $(PRACTICE)
-	@echo "Practice removed"
+install-dep:
+	pip install -r requirements.txt
 
-help:
-	@echo "This makefile for repo-level activity"
+install:
+	pip install -e .
 
-run-product:
-	cd product_service && poetry run uvicorn src.app.main:app --host 127.0.0.1 --port $(PRODUCT_SERVICE_PORT)
+test-pytest:
+	python3 -m pytest
 
-run-order:
-	powershell -Command "cd order_service; $$env:PRODUCT_SERVICE_URL='$(PRODUCT_SERVICE_URL)'; poetry run uvicorn src.app.main:app --host 127.0.0.1 --port $(ORDER_SERVICE_PORT)"
+test: install-dep install test-pytest
+
+run:
+	poetry install
+	poetry run uvicorn app.main:app --host 127.0.0.1 --port 8002
+
+build-app:
+	docker build -t product_service:dev ./
+
+run-docker:
+	docker run --rm --name order-service -p 8002:8000 order_service:dev
