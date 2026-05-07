@@ -25,7 +25,7 @@ class DiscountResponse(BaseModel):
 
 
 
-def calculate_discount(product_id: str, quantity: int, unit_price: float, promo_code: Optional[str]) -> tuple[
+def calculate_discount(product_id: str, quantity: int, unit_price: float) -> tuple[
     float, str]:
     
 
@@ -52,14 +52,13 @@ async def calculate_discount_endpoint(request: DiscountRequest) -> DiscountRespo
         product_id=request.product_id,
         quantity=request.quantity,
         unit_price=request.unit_price,
-        promo_code=request.promo_code,
+
     )
 
     return DiscountResponse(
         product_id=request.product_id,
         quantity=request.quantity,
         unit_price=request.unit_price,
-        promo_code=request.promo_code,
         discount_percent=discount_percent,
         reason=reason,
     )
